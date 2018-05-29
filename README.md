@@ -12,7 +12,7 @@ are specified with `JBP_CONFIG_JAVA_MAIN` key.
 
 ## Community / Support
 
-* [GitHub Issues](https://github.com/rabbitmq/rabbitmq-perf-test-pcf/issues)
+* [GitHub Issues](https://github.com/rabbitmq/rabbitmq-perf-test-for-pcf/issues)
 
 ## License ##
 
