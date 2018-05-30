@@ -32,10 +32,13 @@ import java.util.stream.Stream;
  */
 public class PcfPerfTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         String uris = uris(System.getenv("VCAP_SERVICES"));
         if (uris == null) {
             throw new IllegalArgumentException("Unable to retrieve broker URI(s) from VCAP_SERVICES");
+        }
+        if (args == null) {
+            args = new String[0];
         }
         args = Arrays.copyOf(args, args.length + 2);
         args[args.length - 2] = "--uris";
@@ -44,6 +47,9 @@ public class PcfPerfTest {
     }
 
     static String uris(String vcapServices) {
+        if (vcapServices == null || vcapServices.trim().isEmpty()) {
+            return null;
+        }
         Gson gson = new Gson();
         JsonObject jsonObject = (JsonObject) gson.fromJson(vcapServices, JsonElement.class);
         String uris = null;
