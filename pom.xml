@@ -86,4 +86,31 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-rabbitmq-maven</id>
+            <url>https://dl.bintray.com/rabbitmq/maven</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-rabbitmq-maven-milestones</id>
+            <url>https://dl.bintray.com/rabbitmq/maven-milestones</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
 </project>
