@@ -6,5 +6,4 @@ applications:
     memory: 768M
     health-check-type: process
     env:
-      JBP_CONFIG_JAVA_MAIN: >
-        { arguments: "--rate 100" }
+      RATE: 10
