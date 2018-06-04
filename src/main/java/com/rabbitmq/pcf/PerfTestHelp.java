@@ -17,6 +17,11 @@
 package com.rabbitmq.pcf;
 
 import com.rabbitmq.perf.PerfTest;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,7 +29,61 @@ import com.rabbitmq.perf.PerfTest;
 public class PerfTestHelp {
 
     public static void main(String[] args) {
-        PerfTest.main(new String[] { "-?" });
+        if (args == null || args.length == 0) {
+            PerfTest.main(new String[] { "-?" });
+        } else {
+            List<Option> options = new ArrayList<>();
+            int envMaxLength = -1;
+            for (Object optionObj : PerfTest.getOptions().getOptions()) {
+                Option option = (Option) optionObj;
+                if ("?".equals(option.getOpt()) || "v".equals(option.getOpt())) {
+                    continue;
+                }
+                String env = PerfTest.LONG_OPTION_TO_ENVIRONMENT_VARIABLE.apply(option.getLongOpt());
+                envMaxLength = Math.max(envMaxLength, env.length());
+                options.add(option);
+            }
+
+            options.sort(((o1, o2) -> o1.getLongOpt().compareToIgnoreCase(o2.getLongOpt())));
+            StringBuilder builder = new StringBuilder();
+            int width = HelpFormatter.DEFAULT_WIDTH;
+            int maxWidth = 1 + envMaxLength + HelpFormatter.DEFAULT_DESC_PAD;
+            String lineSep = System.getProperty("line.separator");
+            for (Option option : options) {
+                StringBuilder line = new StringBuilder();
+                line.append(" ");
+                line.append(PerfTest.LONG_OPTION_TO_ENVIRONMENT_VARIABLE.apply(option.getLongOpt()));
+                while (line.length() < maxWidth) {
+                    line.append(" ");
+                }
+
+                List<String> brokenDescription = breakString(option.getDescription(), width);
+                line.append(brokenDescription.get(0)).append(lineSep);
+                for (int i = 1; i < brokenDescription.size(); i++) {
+                    int j = 0;
+                    while (j < maxWidth) {
+                        line.append(" ");
+                        j++;
+                    }
+                    line.append(brokenDescription.get(i)).append(lineSep);
+                }
+                builder.append(line);
+            }
+            System.out.print(builder.toString());
+        }
     }
 
+    static List<String> breakString(String in, int max) {
+        List<String> result = new ArrayList<>();
+        while (in.length() > 0) {
+            int indexToBreak = Math.min(in.length(), max);
+            if (indexToBreak == max) {
+                indexToBreak = in.substring(0, max).lastIndexOf(' ');
+            }
+            String part = in.substring(0, indexToBreak);
+            result.add(part.trim());
+            in = in.replace(part, "");
+        }
+        return result;
+    }
 }

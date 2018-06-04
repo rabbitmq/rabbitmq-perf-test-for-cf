@@ -13,19 +13,24 @@ with environment variables or with the `JBP_CONFIG_JAVA_MAIN` manifest key.
 * Push the application to Cloud Foundry: `cf push`.
 
 Consult [PerfTest documentation](http://www.rabbitmq.com/java-tools.html#throughput-load-testing)
-to learn more about the available options. You can also run PerfTest help command to list
-all the options:
+to learn more about the available options.
+
+You can use environment variables in the manifest to configure PerfTest.
+The environment variable names use a snake-case version of the command line
+argument long names, e.g. `--multi-ack-every` becomes `MULTI_ACK_EVERY`. Run the following
+command to see all the available environment variables:
+
+```
+./mvnw -q compile exec:java -Dexec.args="env"
+```
+
+Alternatively, you can use the `JBP_CONFIG_JAVA_MAIN` manifest key to specify
+the command line for PerfTest. Run the following command to see
+all the available command line arguments:
 
 ```
 ./mvnw -q compile exec:java
 ```
-
-You can use environment variables in the manifest to configure PerfTest.
-The environment variable names use a snake-case version of the command line
-argument long names, e.g. `--multi-ack-every` becomes `MULTI_ACK_EVERY`.
-
-Alternatively, you can use the `JBP_CONFIG_JAVA_MAIN` manifest key to specify
-the command line for PerfTest.
 
 Below are some simple examples showing configuration with both ways.
 
