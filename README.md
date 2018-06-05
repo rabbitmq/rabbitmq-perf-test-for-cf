@@ -15,6 +15,9 @@ Pre-requisites: JDK 8 or higher and
 with environment variables or with the `JBP_CONFIG_JAVA_MAIN` manifest key.
 * Push the application to Cloud Foundry: `cf push`.
 
+The Cloud Foundry application must be bound to a RabbitMQ service. It will automatically
+get the connection information from the `VCAP_SERVICES` environment variable.
+
 Consult [PerfTest documentation](http://www.rabbitmq.com/java-tools.html#throughput-load-testing)
 to learn more about the available options.
 
