@@ -7,7 +7,10 @@ on [Cloud Foundry](https://www.cloudfoundry.org/). It has been tested against
 
 ## How to use
 
-* Compile and package the application: `./mvnw clean package`
+Pre-requisites: JDK 8 or higher and
+[Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/) installed.
+
+* Compile and package the application: `./mvnw clean package -Dmaven.test.skip`
 * Configure the application with the `manifest.yml` file. PerfTest is configured
 with environment variables or with the `JBP_CONFIG_JAVA_MAIN` manifest key.
 * Push the application to Cloud Foundry: `cf push`.
