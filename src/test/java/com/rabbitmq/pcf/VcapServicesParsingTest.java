@@ -347,6 +347,29 @@ public class VcapServicesParsingTest {
         + "   ]\n"
         + " }]}";
 
+    static final String USER_PROVIDED_SERVICE = "{\n"
+        + "   \"user-provided\":[\n"
+        + "      {\n"
+        + "         \"binding_name\":null,\n"
+        + "         \"credentials\":{\n"
+        + "            \"urls\":[\n"
+        + "               \"amqp://admin:8j6liQN5t0YdCaYsbpAJ@10.0.32.4:5672/%2F\"\n"
+        + "            ]\n"
+        + "         },\n"
+        + "         \"instance_name\":\"rmq\",\n"
+        + "         \"label\":\"user-provided\",\n"
+        + "         \"name\":\"rmq\",\n"
+        + "         \"syslog_drain_url\":\"\",\n"
+        + "         \"tags\":[\n"
+        + "\n"
+        + "         ],\n"
+        + "         \"volume_mounts\":[\n"
+        + "\n"
+        + "         ]\n"
+        + "      }\n"
+        + "   ]\n"
+        + "}";
+
     @Test
     public void extractUriSingleService() {
         assertEquals(
@@ -368,6 +391,14 @@ public class VcapServicesParsingTest {
         assertEquals(
             "amqp://238356f9-5436-4681-9275-9874bf503f83:940ph0mouteu06dtmf5esprte9@rabbitmq.local.pcfdev.io/e92537fe-112f-4958-8d6a-8dc00b1364d3",
             uris(NOT_ONLY_RABBITMQ_SERVICES)
+        );
+    }
+
+    @Test
+    public void extractUriFromUserProvidedServiceNoAmqpTag() {
+        assertEquals(
+            "amqp://admin:8j6liQN5t0YdCaYsbpAJ@10.0.32.4:5672/%2F",
+            uris(USER_PROVIDED_SERVICE)
         );
     }
 

@@ -24,6 +24,7 @@ import com.google.gson.JsonPrimitive;
 import com.rabbitmq.perf.PerfTest;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -51,19 +52,35 @@ public class PcfPerfTest {
             return null;
         }
         Gson gson = new Gson();
-        JsonObject jsonObject = (JsonObject) gson.fromJson(vcapServices, JsonElement.class);
+        JsonObject servicesType = (JsonObject) gson.fromJson(vcapServices, JsonElement.class);
         String uris = null;
-        for (String serviceType : jsonObject.keySet()) {
-            JsonArray array = jsonObject.getAsJsonArray(serviceType);
-            boolean isAmqp = array.get(0).getAsJsonObject().get("tags").getAsJsonArray().contains(new JsonPrimitive("amqp"));
-            if (isAmqp) {
-                Stream.Builder<String> builder = Stream.builder();
-                array.get(0).getAsJsonObject().get("credentials").getAsJsonObject().get("uris").getAsJsonArray()
-                    .forEach(element -> builder.accept(element.getAsString()));
-                uris = String.join(",", builder.build().collect(Collectors.toList()));
+        for (String serviceType : servicesType.keySet()) {
+            JsonArray services = servicesType.getAsJsonArray(serviceType);
+            uris = extractUrisFromServices(services, service -> service.get("tags").getAsJsonArray().contains(new JsonPrimitive("amqp")));
+            if (uris != null) {
+                break;
+            }
+            uris = extractUrisFromServices(services, service -> true);
+            if (uris != null) {
                 break;
             }
         }
         return uris;
+    }
+
+    static String extractUrisFromServices(JsonArray services, Predicate<JsonObject> shouldInspectService) {
+        for (JsonElement service : services) {
+            if (shouldInspectService.test(service.getAsJsonObject())) {
+                JsonObject credentials = services.get(0).getAsJsonObject().get("credentials").getAsJsonObject();
+                if (credentials.get("uris") == null && credentials.get("urls") == null) {
+                    break;
+                }
+                JsonArray uris = credentials.get("uris") == null ? credentials.get("urls").getAsJsonArray() : credentials.get("uris").getAsJsonArray();
+                Stream.Builder<String> builder = Stream.builder();
+                uris.forEach(uri -> builder.accept(uri.getAsString()));
+                return String.join(",", builder.build().collect(Collectors.toList()));
+            }
+        }
+        return null;
     }
 }
