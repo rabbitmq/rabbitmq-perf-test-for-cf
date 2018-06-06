@@ -24,7 +24,12 @@ import com.google.gson.JsonPrimitive;
 import com.rabbitmq.perf.PerfTest;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,7 +49,22 @@ public class PcfPerfTest {
         args = Arrays.copyOf(args, args.length + 2);
         args[args.length - 2] = "--uris";
         args[args.length - 1] = uris;
-        PerfTest.main(args);
+
+        UnaryOperator<String> lookup = name -> System.getenv(name);
+        PerfTest.PerfTestOptions options = new PerfTest.PerfTestOptions()
+            .setArgumentLookup(
+                PerfTest.LONG_OPTION_TO_ENVIRONMENT_VARIABLE
+                    .andThen(PerfTest.ENVIRONMENT_VARIABLE_PREFIX)
+                    .andThen(envName -> {
+                        String envValue = System.getenv(envName);
+                        if (envValue != null && !extractVariables(envValue).isEmpty()) {
+                            envValue = evaluate(envValue, lookup);
+                        }
+                        return envValue;
+                    })
+            );
+
+        PerfTest.main(args, options);
     }
 
     static String uris(String vcapServices) {
@@ -82,5 +102,24 @@ public class PcfPerfTest {
             }
         }
         return null;
+    }
+
+    static String evaluate(String input, UnaryOperator<String> lookup) {
+        Set<String> variables = extractVariables(input);
+        if (!variables.isEmpty()) {
+            for (String variable : variables) {
+                input = input.replace("${" + variable + "}", lookup.apply(variable));
+            }
+        }
+        return input;
+    }
+
+    static Set<String> extractVariables(String input) {
+        Matcher m = Pattern.compile("\\$\\{(\\w*?)\\}").matcher(input);
+        Set<String> variables = new LinkedHashSet<>();
+        while (m.find()) {
+            variables.add(m.group(1));
+        }
+        return variables;
     }
 }
