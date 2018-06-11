@@ -27,7 +27,7 @@ argument long names, e.g. `--multi-ack-every` becomes `MULTI_ACK_EVERY`. Run the
 command to see all the available environment variables:
 
 ```
-./mvnw -q compile exec:java -Dexec.args="env"
+./mvnw -q compile exec:java -Dexec.args="-env"
 ```
 
 Alternatively, you can use the `JBP_CONFIG_JAVA_MAIN` manifest key to specify
@@ -35,7 +35,7 @@ the command line for PerfTest. Run the following command to see
 all the available command line arguments:
 
 ```
-./mvnw -q compile exec:java
+./mvnw -q compile exec:java -Dexec.args="--help"
 ```
 
 Below are some simple examples showing configuration with both ways.
@@ -98,6 +98,21 @@ env:
 
 See PerfTest documentation on [high load simulation](http://www.rabbitmq.com/java-tools.html#simulating-high-loads)
 if you want to run hundreds of connections or more.
+
+## Metrics Support
+
+PerfTest has also options for metrics. Run the following command to see the
+available options as environment variables:
+
+```
+./mvnw -q compile exec:java -Dexec.args="-mh -env"
+```
+
+Launch the following command to see the available options as command line arguments:
+
+```
+./mvnw -q compile exec:java -Dexec.args="-mh"
+```
 
 ## Community / Support
 
