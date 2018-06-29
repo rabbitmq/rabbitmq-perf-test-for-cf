@@ -5,6 +5,7 @@ applications:
     buildpack: https://github.com/cloudfoundry/java-buildpack.git
     memory: 768M
     health-check-type: process
+    services: [rmq]
     env:
 #      AUTOACK:
 #      AUTO_DELETE:
