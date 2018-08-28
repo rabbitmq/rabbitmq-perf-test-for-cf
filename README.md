@@ -18,7 +18,7 @@ with environment variables or with the `JBP_CONFIG_JAVA_MAIN` manifest key.
 The Cloud Foundry application must be bound to a RabbitMQ service. It will automatically
 get the connection information from the `VCAP_SERVICES` environment variable.
 
-Consult [PerfTest documentation](http://www.rabbitmq.com/java-tools.html#throughput-load-testing)
+Consult [PerfTest documentation](https://rabbitmq.github.io/rabbitmq-perf-test/milestone/htmlsingle/)
 to learn more about the available options.
 
 You can use environment variables in the manifest to configure PerfTest.
@@ -96,7 +96,7 @@ env:
     { arguments: "-x 10 -y 20 --queue-pattern 'test-%d' --queue-pattern-from 1 --queue-pattern-to 10" }
 ```
 
-See PerfTest documentation on [high load simulation](http://www.rabbitmq.com/java-tools.html#simulating-high-loads)
+See PerfTest documentation on [high load simulation](https://rabbitmq.github.io/rabbitmq-perf-test/milestone/htmlsingle/#simulating-high-loads)
 if you want to run hundreds of connections or more.
 
 ## Metrics Support
