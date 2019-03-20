@@ -1,6 +1,6 @@
 # RabbitMQ PerfTest for Cloud Foundry
 
-This is a template project to easily run [RabbitMQ Performance Tool](http://www.rabbitmq.com/java-tools.html#throughput-load-testing)
+This is a template project to easily run [RabbitMQ Performance Tool](https://www.rabbitmq.com/java-tools.html#throughput-load-testing)
 on [Cloud Foundry](https://www.cloudfoundry.org/). It has been tested against
 [Pivotal Cloud Foundry](https://pivotal.io/platform), more specifically against
 [Pivotal Cloud Foundry for Local Development](https://pivotal.io/pcf-dev).
@@ -122,4 +122,4 @@ Launch the following command to see the available options as command line argume
 
 RabbitMQ PerfTest for Pivotal Cloud Foundry is [Apache 2.0 licensed](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-_Sponsored by [Pivotal](http://pivotal.io)_
+_Sponsored by [Pivotal](https://pivotal.io)_
