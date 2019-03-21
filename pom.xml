@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <perf-test.version>2.7.0.RC1</perf-test.version>
+        <perf-test.version>2.7.0</perf-test.version>
         <spring-boot-maven-plugin.version>2.1.3.RELEASE</spring-boot-maven-plugin.version>
         <logback.version>1.2.3</logback.version>
         <junit.jupiter.version>5.4.0</junit.jupiter.version>
