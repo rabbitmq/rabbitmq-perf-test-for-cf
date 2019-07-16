@@ -2,7 +2,8 @@
 applications:
   - name: rabbitmq-perf-test
     path: ./target/pcf-perf-test-1.0-SNAPSHOT.jar
-    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    buildpacks: 
+      - https://github.com/cloudfoundry/java-buildpack.git
     memory: 768M
     health-check-type: process
     services: [rmq]
