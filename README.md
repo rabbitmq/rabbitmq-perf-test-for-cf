@@ -114,6 +114,16 @@ Launch the following command to see the available options as command line argume
 ./mvnw -q compile exec:java -Dexec.args="-mh"
 ```
 
+## PerfTest version
+
+The PerfTest version to use is set into the `pom.xml` file, e.g. `<perf-test.version>2.8.1</perf-test.version>`.
+This can be changed before packaging and deploying on Cloud Foundry. Versions are typically latest stable,
+milestones or release candidates, and snapshots. To know about the available versions:
+
+ * [Stable versions](https://repo1.maven.org/maven2/com/rabbitmq/perf-test/)
+ * [Milestones and release candidates](https://packagecloud.io/app/rabbitmq/maven-milestones/search?q=perf-test)
+ * [Snapshots](https://oss.sonatype.org/content/repositories/snapshots/com/rabbitmq/perf-test/)
+
 ## Community / Support
 
 * [GitHub Issues](https://github.com/rabbitmq/rabbitmq-perf-test-for-cf/issues)
