@@ -2,8 +2,8 @@
 
 This is a template project to easily run [RabbitMQ Performance Tool](https://www.rabbitmq.com/java-tools.html#throughput-load-testing)
 on [Cloud Foundry](https://www.cloudfoundry.org/). It has been tested against
-[Pivotal Cloud Foundry](https://pivotal.io/platform), more specifically against
-[Pivotal Cloud Foundry for Local Development](https://pivotal.io/pcf-dev).
+[Cloud Foundry](https://tanzu.vmware.com/tanzu), more specifically against
+[Cloud Foundry for Local Development](https://tanzu.vmware.com/application-service).
 
 ## How to use
 
@@ -130,6 +130,7 @@ milestones or release candidates, and snapshots. To know about the available ver
 
 ## License ##
 
-RabbitMQ PerfTest for Pivotal Cloud Foundry is [Apache 2.0 licensed](https://www.apache.org/licenses/LICENSE-2.0.html).
+RabbitMQ PerfTest for Cloud Foundry is [Apache 2.0 licensed](https://www.apache.org/licenses/LICENSE-2.0.html).
 
-_Sponsored by [Pivotal](https://pivotal.io)_
+Copyright 2018-2023 Broadcom. All Rights Reserved.
+The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.

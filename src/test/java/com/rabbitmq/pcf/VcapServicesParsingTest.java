@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Pivotal Software Inc, All Rights Reserved.
+ * Copyright (c) 2018-2023 Broadcom. All Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ public class VcapServicesParsingTest {
         + "        \"amqp\",\n"
         + "        \"stomp\",\n"
         + "     \"mqtt\",\n"
-        + "     \"pivotal\"\n"
+        + "     \"broadcom\"\n"
         + "   ]\n"
         + " }]}\n";
 
@@ -163,7 +163,7 @@ public class VcapServicesParsingTest {
         + "     \"amqp\",\n"
         + "     \"stomp\",\n"
         + "     \"mqtt\",\n"
-        + "     \"pivotal\"\n"
+        + "     \"broadcom\"\n"
         + "   ]\n"
         + " },{\n"
         + "   \"credentials\": {\n"
@@ -231,7 +231,7 @@ public class VcapServicesParsingTest {
         + "     \"amqp\",\n"
         + "     \"stomp\",\n"
         + "     \"mqtt\",\n"
-        + "     \"pivotal\"\n"
+        + "     \"broadcom\"\n"
         + "   ]\n"
         + " }]}";
 
@@ -321,7 +321,7 @@ public class VcapServicesParsingTest {
         + "     \"amqp\",\n"
         + "     \"stomp\",\n"
         + "     \"mqtt\",\n"
-        + "     \"pivotal\"\n"
+        + "     \"broadcom\"\n"
         + "   ]\n"
         + " }]}";
 
