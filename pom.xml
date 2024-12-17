@@ -14,7 +14,7 @@
         <perf-test.version>2.19.0</perf-test.version>
         <spring-boot-maven-plugin.version>3.4.0</spring-boot-maven-plugin.version>
         <logback.version>1.5.12</logback.version>
-        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+        <junit.jupiter.version>5.11.4</junit.jupiter.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
